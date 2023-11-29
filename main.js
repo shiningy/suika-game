@@ -76,6 +76,48 @@ window.onkeyup = (event) => {
   }
 }
 
+window.ontouchstart = (event) => {
+  if (disableAction) {
+    return;
+  }
+
+  if ((event.touches[0].clientX - currentFruit.radius > 30) && (event.touches[0].clientX + currentFruit.radius < 590)) {
+    Body.setPosition(currentBody, { x: event.touches[0].clientX, y: currentBody.position.y });
+  }
+  if (event.touches[0].clientX - currentFruit.radius <= 30) {
+    Body.setPosition(currentBody, { x: 30 + currentFruit.radius, y: currentBody.position.y });
+  }
+  
+  if (event.touches[0].clientX + currentFruit.radius >= 590) {
+    Body.setPosition(currentBody, { x: 590 - currentFruit.radius, y: currentBody.position.y });
+  }
+    
+}
+
+window.ontouchmove = (event) => {
+  if (disableAction) {
+    return;
+  }
+  if ((event.touches[0].clientX - currentFruit.radius > 30) && (event.touches[0].clientX + currentFruit.radius < 590)) {
+    Body.setPosition(currentBody, { x: event.touches[0].clientX, y: currentBody.position.y });
+  }
+}
+
+window.ontouchend = (event) => {
+  if (disableAction) {
+    return;
+  }
+
+  currentBody.isSleeping = false;
+  disableAction = true;
+
+  setTimeout(() => {
+    addFruit();
+    disableAction = false;
+  }, 1000);
+
+}
+
 window.onkeydown = (event) => {
   if (disableAction) {
     return;
