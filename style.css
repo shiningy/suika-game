@@ -29,6 +29,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
   touch-action: none;
+  overflow: -moz-scrollbars-horizontal;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 h1 {
