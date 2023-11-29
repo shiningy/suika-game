@@ -1,6 +1,11 @@
 import { Bodies, Body, Engine, Events, Render, Runner, World } from 'matter-js';
 import { FRUITS_HLW } from './fruits';
 
+const SCREEN_WIDTH = 380;
+const SCREEN_HEIGHT = 700;
+const WALL_WIDTH = 30;
+const WALL_HEIGHT = 700;
+
 const engine = Engine.create();
 const render = Render.create({
   engine,
@@ -8,29 +13,29 @@ const render = Render.create({
   options: {
     wireframes: false,
     background: '#f7f4c8',
-    width: 620,
-    height: 850,
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
   },
 });
 
 const world = engine.world;
 
-const leftWall = Bodies.rectangle(15, 395, 30, 790, {
+const leftWall = Bodies.rectangle(WALL_WIDTH*0.5, WALL_HEIGHT*.5, WALL_WIDTH, WALL_HEIGHT, {
   isStatic: true,
   render: { fillStyle: '#e6b143' },
 });
 
-const rightWall = Bodies.rectangle(605, 395, 30, 790, {
+const rightWall = Bodies.rectangle(SCREEN_WIDTH-WALL_WIDTH*.5, WALL_HEIGHT*.5, WALL_WIDTH, WALL_HEIGHT, {
   isStatic: true,
   render: { fillStyle: '#e6b143' },
 });
 
-const ground = Bodies.rectangle(310, 820, 620, 60, {
+const ground = Bodies.rectangle(SCREEN_WIDTH*.5, WALL_HEIGHT - 30, SCREEN_WIDTH, 60, {
   isStatic: true,
   render: { fillStyle: '#e6b143' },
 });
 
-const topLine = Bodies.rectangle(310, 150, 620, 2, {
+const topLine = Bodies.rectangle(SCREEN_WIDTH*0.5, 150, SCREEN_WIDTH, 2, {
   name: 'topLine',
   isStatic: true,
   isSensor: true,
@@ -51,7 +56,7 @@ function addFruit() {
   const index = Math.floor(Math.random() * UPPER_BOUND);
   const fruit = FRUITS_HLW[index];
 
-  const body = Bodies.circle(300, 50, fruit.radius, {
+  const body = Bodies.circle(SCREEN_WIDTH*0.5, 50, fruit.radius, {
     index: index,
     isSleeping: true,
     render: {
@@ -81,15 +86,15 @@ window.ontouchstart = (event) => {
     return;
   }
 
-  if ((event.touches[0].clientX - currentFruit.radius > 30) && (event.touches[0].clientX + currentFruit.radius < 590)) {
+  if ((event.touches[0].clientX - currentFruit.radius > 30) && (event.touches[0].clientX + currentFruit.radius < SCREEN_WIDTH - WALL_WIDTH)) {
     Body.setPosition(currentBody, { x: event.touches[0].clientX, y: currentBody.position.y });
   }
   if (event.touches[0].clientX - currentFruit.radius <= 30) {
     Body.setPosition(currentBody, { x: 30 + currentFruit.radius, y: currentBody.position.y });
   }
   
-  if (event.touches[0].clientX + currentFruit.radius >= 590) {
-    Body.setPosition(currentBody, { x: 590 - currentFruit.radius, y: currentBody.position.y });
+  if (event.touches[0].clientX + currentFruit.radius >= SCREEN_WIDTH) {
+    Body.setPosition(currentBody, { x: SCREEN_WIDTH - currentFruit.radius, y: currentBody.position.y });
   }
     
 }
@@ -98,7 +103,7 @@ window.ontouchmove = (event) => {
   if (disableAction) {
     return;
   }
-  if ((event.touches[0].clientX - currentFruit.radius > 30) && (event.touches[0].clientX + currentFruit.radius < 590)) {
+  if ((event.touches[0].clientX - currentFruit.radius > 30) && (event.touches[0].clientX + currentFruit.radius < SCREEN_WIDTH - WALL_WIDTH)) {
     Body.setPosition(currentBody, { x: event.touches[0].clientX, y: currentBody.position.y });
   }
 }
@@ -138,7 +143,7 @@ window.onkeydown = (event) => {
         return;
       }
       interval = setInterval(() => {
-        if (currentBody.position.x + currentFruit.radius < 590)
+        if (currentBody.position.x + currentFruit.radius < SCREEN_WIDTH - WALL_WIDTH)
         Body.setPosition(currentBody, { x: currentBody.position.x + 1, y: currentBody.position.y });
       }, 5);
     break;
