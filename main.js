@@ -1,8 +1,8 @@
 import { Bodies, Body, Engine, Events, Render, Runner, World } from 'matter-js';
 import { FRUITS_HLW } from './fruits';
 
-const SCREEN_WIDTH = 380;
-const SCREEN_HEIGHT = 700;
+const SCREEN_WIDTH = window.innerWidth;
+const SCREEN_HEIGHT = window.innerHeight;
 const WALL_WIDTH = 30;
 const WALL_HEIGHT = 700;
 
