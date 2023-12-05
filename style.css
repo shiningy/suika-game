@@ -28,7 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  touch-action: none;
+  touch-action: manipulation;
   overflow: -moz-scrollbars-horizontal;
   overflow-y: hidden;
   overflow-x: auto;
