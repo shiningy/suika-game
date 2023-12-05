@@ -4,8 +4,9 @@ import { FRUITS_HLW } from './fruits';
 
 const SCREEN_WIDTH = window.innerWidth;
 const SCREEN_HEIGHT = window.innerHeight;
-const WALL_WIDTH = 30;
-const WALL_HEIGHT = 700;
+const WALL_WIDTH = 20;
+const WALL_HEIGHT = 600;
+const TOP_LINE_Y = 100;
 
 const matterContainer = document.getElementById('matter-container');
 
@@ -38,7 +39,7 @@ const ground = Bodies.rectangle(SCREEN_WIDTH*.5, WALL_HEIGHT - 30, SCREEN_WIDTH,
   render: { fillStyle: '#e6b143' },
 });
 
-const topLine = Bodies.rectangle(SCREEN_WIDTH*0.5, 150, SCREEN_WIDTH, 2, {
+const topLine = Bodies.rectangle(SCREEN_WIDTH*0.5, TOP_LINE_Y, SCREEN_WIDTH, 2, {
   name: 'topLine',
   isStatic: true,
   isSensor: true,
