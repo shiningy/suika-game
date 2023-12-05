@@ -1,3 +1,4 @@
+import './style.css'
 import { Bodies, Body, Engine, Events, Render, Runner, World } from 'matter-js';
 import { FRUITS_HLW } from './fruits';
 
@@ -6,10 +7,12 @@ const SCREEN_HEIGHT = window.innerHeight;
 const WALL_WIDTH = 30;
 const WALL_HEIGHT = 700;
 
+const matterContainer = document.getElementById('matter-container');
+
 const engine = Engine.create();
 const render = Render.create({
   engine,
-  element: document.body,
+  element: matterContainer,
   options: {
     wireframes: false,
     background: '#f7f4c8',
