@@ -1,4 +1,15 @@
-import './style.css'
+import './style.css';
+import img0 from '/halloween/00_cherry.png?url';
+import img1 from '/halloween/01_strawberry.png?url';
+import img2 from '/halloween/02_grape.png?url';
+import img3 from '/halloween/03_gyool.png?url';
+import img4 from '/halloween/04_orange.png?url';
+import img5 from '/halloween/05_apple.png?url';
+import img6 from '/halloween/06_pear.png?url';
+import img7 from '/halloween/07_peach.png?url';
+import img8 from '/halloween/08_pineapple.png?url';
+import img9 from '/halloween/09_melon.png?url';
+import img10 from '/halloween/10_watermelon.png?url';
 import { Bodies, Body, Engine, Events, Render, Runner, World } from 'matter-js';
 import { FRUITS_HLW } from './fruits';
 
